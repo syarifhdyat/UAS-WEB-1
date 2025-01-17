@@ -1,0 +1,822 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: none;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            height: 80px;
+            margin-right: 80px;
+            margin-bottom: 20px;
+        }
+
+        .company-info h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            
+        }
+
+        .language-selector {
+            display: flex;
+            gap: 10px;
+        }
+
+        .language-selector button {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            background: #f8f9fa;
+            cursor: pointer;
+        }
+
+        /* Navigation Styles */
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        /* Styling untuk search box container */
+.search-box {
+    display: flex;  
+    align-items: center;  
+    background-color: #f1f1f1;  
+    border-radius: 8px;  
+    padding: 5px 15px;  
+    width: 300px;  
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+}
+
+.search-input { 
+    border: none;  
+    outline: none; 
+    padding: 10px;  
+    flex-grow: 1;  
+    font-size: 16px; 
+    border-radius: 8px; 
+    background-color: #fff;  
+    color: #333;  
+}
+
+.search-button {
+   
+    border: none;  
+    color: white; 
+    padding: 10px 15px;  
+    border-radius: 50%; 
+    cursor: pointer;  
+    margin-left: 10px;  
+    transition: background-color 0.3s;  
+}
+
+.search-button:hover {
+    background-color: #3a3d3a;
+}
+
+.search-input:focus {
+    box-shadow: 0 0 5px rgba(0, 120, 255, 0.5);  
+    background-color: #e7f3ff;  
+}
+
+
+        /*slide*/
+        .slider {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slides img {
+            width: 100%;
+            height: auto;
+        }
+        .navigation {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .navigation button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 24px;
+            border-radius: 5px;
+        }
+        .navigation button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /*newsletter*/
+        .newsletter-image img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+        /* Main Content */
+        .main-content {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .content-left { 
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .top-story {
+            margin-bottom: 30px;
+        }
+
+        .story-image {
+            width: 200px;
+            height: 200px;
+            margin-right: 20px;
+            float: left;
+        }
+
+        .newsletter {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center; 
+}
+
+.newsletter-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    justify-items: center; 
+}
+
+.newsletter-item {
+    text-align: center;
+}
+
+.newsletter-image {
+    width: 150px;
+    height: 155px;
+    margin-bottom: 10px;
+    margin-left: 60px;
+}
+
+
+        .content-right {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .content-right h3 {
+            margin-bottom: 30px;
+        }
+
+        .video-container {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 60px;
+        }
+
+        .navigate-section {
+    background-color: #f8f8f8;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.navigate-section h3 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.navigate-section ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navigate-section ul li {
+    font-size: 18px;
+    color: #555;
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.navigate-section ul li:hover {
+    color: #007BFF;
+    transform: translateX(10px);
+}
+
+.navigate-section ul li i {
+    margin-right: 10px;
+    font-size: 20px;
+    color: #007BFF;
+    transition: all 0.3s ease;
+}
+
+.navigate-section ul li:hover i {
+    transform: scale(1.2);
+}
+
+
+        /* Maklumat Pelayanan Section */
+            .maklumat {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            margin-bottom: 50px;
+            margin-top: 50px;
+        }
+
+.maklumat h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+}
+
+.story-image {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.story-image img {
+    max-width: 100%;
+    height: 190px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.maklumat p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+    margin-bottom: 50px;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.button-group .btn {
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.button-group .btn:hover {
+    background-color: #0056b3;
+}
+
+.btn {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #28a745;
+}
+
+.btn-primary:hover {
+    background-color: #218838;
+}
+
+
+/* Footer */
+.footer {
+    background-color: #f8f9fa; 
+    color: #0a0505; 
+    padding: 20px 0;  
+    text-align: center; 
+}
+
+.social-media {
+    margin-bottom: 10px; 
+}
+
+.social-media a {
+    margin: 0 15px; 
+    display: inline-block;  
+}
+
+.social-icon {
+    width: 30px;  
+    height: 30px; 
+    transition: transform 0.3s ease; 
+}
+
+
+.social-icon:hover {
+    transform: scale(1.2);  
+}
+
+
+footer p {
+    font-size: 14px;  
+    margin-top: 10px;  
+}
+
+
+
+        .button-group {
+            margin: 20px 0;
+        }
+
+        .button-group button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: 1px solid #ddd;
+            background: #f8f9fa;
+            cursor: pointer;
+        }
+
+        .user-reviews {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.description {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.features {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.features li {
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.features li::before {
+    content: "✔";
+    margin-right: 10px;
+    color: green;
+    font-size: 18px;
+}
+
+
+    .custom-button {
+        background-color: #f1d244; /* Warna background tombol */
+        color: rgb(5, 0, 0); /* Warna teks tombol */
+        border: none; /* Membuat border transparan */
+        padding: 10px 20px; /* Padding internal tombol */
+        text-align: center; /* Text akan berada di tengah */
+        text-decoration: none; /* Menghapus underline */
+        display: inline-block; /* Menampilkan tombol dalam baris yang sama */
+        font-size: 10px; /* Ukuran teks tombol */
+        border-radius: 5px; /* Membulatkan sudut tombol */
+        cursor: pointer; /* Menunjukkan pointer saat mouse hover */
+        transition: background-color 0.3s, transform 0.2s; /* Animasi efek hover */
+    }
+
+    .custom-button:hover {
+        background-color: #0056b3; /* Warna background saat hover */
+        transform: scale(1.05); /* Efek scale saat hover */
+    }
+
+    .profil-pejabat {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.profil-pejabat h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.pejabat-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pejabat-utama {
+    margin-bottom: 30px;
+}
+
+.pejabat-utama img {
+    width: 200px; 
+    height: 250px; 
+    object-fit: cover; 
+    margin-bottom: 10px;
+    border-radius: 15px; 
+    transition: transform 0.3s ease, opacity 0.3s ease; 
+}
+
+.pejabat-utama:hover img {
+    transform: scale(1.05); 
+    opacity: 0.8; 
+}
+
+.pejabat-utama h4 {
+    font-size: 20px;
+    margin: 5px 0;
+}
+
+.pejabat-utama p {
+    font-size: 14px;
+    color: #555;
+}
+
+.pejabat-bawah {
+    display: flex;
+    justify-content: space-between; 
+    width: 100%;
+    max-width: 900px; 
+    gap: 20px; 
+    margin-top: 20px;
+}
+
+.pejabat-item {
+    text-align: center;
+    width: 30%; 
+}
+
+.pejabat-item img {
+    width: 200px; 
+    height: 250px; 
+    object-fit: cover; 
+    margin-bottom: 10px;
+    border-radius: 15px; 
+    transition: transform 0.3s ease, opacity 0.3s ease; 
+}
+
+.pejabat-item:hover img {
+    transform: scale(1.05); 
+    opacity: 0.8;
+}
+
+.pejabat-item h4 {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.pejabat-item p {
+    font-size: 14px;
+    color: #555;
+}
+
+ #shareLinkBtn {
+            background-color: #4CAF50; 
+            color: white; 
+            border: none; 
+            padding: 15px 32px; 
+            text-align: center; 
+            text-decoration: none; 
+            display: inline-block; 
+            font-size: 16px; 
+            cursor: pointer; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+            transition: all 0.3s ease; 
+        }
+
+        
+        #shareLinkBtn:hover {
+            background-color: #45a049; 
+            transform: scale(1.05); 
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+        }
+
+        
+        #shareLinkBtn:active {
+            transform: scale(0.98);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-top">
+                <div class="logo-section">
+                    <img src="Logo-Bapenda.jpeg" alt="Logo Bependa" width="200">
+                    <div class="company-info">
+                        <h1>UPPD BANJARMASIN II</h1>
+                        <p>Pemerintah Provinsi Kalimantan Selatan</p>
+                    </div>
+                </div>
+                <div class="language-selector">
+                    <button>EN</button>
+                    <button>FR</button>
+                    <button>DE</button>
+                    <button>CN</button>
+                </div>
+            </div>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="#">Beranda</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Pajak</a></li>
+                    <li><a href="#">Layanan Samsat</a></li>
+                    <li><a href="#">Berita</a></li>
+                    <li><a href="#">Data</a></li>
+                </ul>
+                <div class="search-box">
+                    <input type="text" placeholder="Search..." class="search-input">
+                    <button class="search-button">🔍</button>
+                </div>                
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <div class="slider">
+            <div class="slides">
+                <img src="Subhan.jpeg" alt="Subhan">
+                <img src="Muhidin.jpeg" alt="Muhidin">
+            </div>
+            <div class="navigation">
+                <button id="prev">&#8249</button>
+                <button id="next">&#8250</button>
+            </div>
+        </div>
+
+       <!-- Profil Pejabat -->
+<div class="profil-pejabat">
+    <h3>PEJABAT STRUKTURAL</h3>
+    <div class="pejabat-info">
+        <!-- Pejabat Paling Tinggi -->
+        <div class="pejabat-utama">
+            <img src="mirza.png" alt="mirza" width="150" height="150">
+            <h4>M. Mirza Luffillah, SE.MM</h4>
+            <p>Kepala UPPD Banjarmasin II</p>
+        </div>
+        <!-- Pejabat Lainnya (3 di bawah) -->
+        <div class="pejabat-bawah">
+            <div class="pejabat-item">
+                <img src="siti.png" alt="siti" width="150" height="150">
+                <h4>Siti Wardianti Rukmana, S.STP</h4>
+                <p>Kepala Sub Bagian Tata Usaha UPPD Banjarmasin II</p>
+            </div>
+            <div class="pejabat-item">
+                <img src="raihanah.png" alt="raihanah" width="150" height="150">
+                <h4>Hj. Raihanah, SE</h4>
+                <p>Kepala Seksi Pendapatan Lainnya UPPD Banjarmasin II</p>
+            </div>
+            <div class="pejabat-item">
+                <img src="yondi.png" alt="yondi" width="150" height="150">
+                <h4>Yondi Caturadina Darnida, SE, MM</h4>
+                <p>Kepala Seksi Pelayanan PKB/BBN-KB UPPD Banjarmasin II</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="content-left">
+                <div class="maklumat">
+                    <h3>Maklumat Pelayanan</h3>
+                    <div class="story-image">
+                        <img src="maklumat.jpeg" alt="Maklumat Pelayanan" width="800" height="100">
+                    </div>
+                    <p>
+                        Berikut adalah maklumat pelayanan yang bertujuan untuk memberikan informasi dan transparansi kepada masyarakat. 
+                        Kami berkomitmen untuk memberikan layanan yang terbaik.
+                    </p>
+                    <div class="button-group">
+                        <a href="maklumat.pdf" download class="btn">Download PDF</a>
+                        <a href="#" class="btn btn-primary">Purchase</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+                <div class="newsletter">
+                    <h3>Berita Bapenda Provinsi Kalimantan Selatan</h3>
+                    <div class="newsletter-grid">
+                        <div class="newsletter-item">
+                            <div class="newsletter-image"> 
+                                <img src="beritabjm2.jpeg" width="90">
+                            </div>
+                            <button class="custom-button" onclick="window.location.href='https://bapenda.kalselprov.go.id/kepala-uppd-banjarmasin-ii-melakukan-sosialisasi-pemberian-insentif-pajak-kendaraan-bermotor-pkb-dan-bea-balik-nama-kendaraan-bermoto-bbnkb/'">
+                                Kepala UPPD Banjarmasin II Melakukan Sosialisasi Pemberian Insentif Pajak Kendaraan Bermotor (PKB) dan Bea Balik Nama Kendaraan Bermoto (BBNKB)
+                            </button>
+                        </div>                        
+                        <div class="newsletter-item">
+                            <div class="newsletter-image"> 
+                                <img src="paripurna.jpeg" width="90">
+                            </div>
+                            <button class="custom-button" onclick="window.location.href='https://bapenda.kalselprov.go.id/kepala-badan-pendapatan-daerah-provinsi-kalimantan-selatan-menghadiri-undangan-rapat-paripurna/'">
+                                Kepala Badan Pendapatan Daerah Provinsi Kalimantan Selatan Menghadiri Undangan Rapat Paripurna
+                            </button>
+                        </div>      
+                        <div class="newsletter-item">
+                            <div class="newsletter-image"> 
+                                <img src="tahunanbank.jpeg" width="90">
+                            </div>
+                            <button class="custom-button" onclick="window.location.href='https://bapenda.kalselprov.go.id/kepala-badan-pendapatan-daerah-provinsi-kalimantan-selatan-menghadiri-undangan-pertemuan-tahunan-bank-indonesia-2024/'">
+                                Kepala Badan Pendapatan Daerah Provinsi Kalimantan Selatan Menghadiri Undangan Pertemuan Tahunan Bank Indonesia 2024
+                            </button>
+                        </div>      
+                        <div class="newsletter-item">
+                            <div class="newsletter-image"> 
+                                <img src="tandatangan.jpeg" width="90">
+                            </div>
+                            <button class="custom-button" onclick="window.location.href='https://bapenda.kalselprov.go.id/penandatanganan-perjanjian-kerja-sama-mengenani-opsen-pkb-bbnkb-dan-mblb/'">
+                                Penandatanganan Perjanjian Kerja Sama Mengenani Opsen PKB, BBNKB dan MBLB
+                            </button>
+                        </div>      
+                    
+                </div>
+
+                <div class="user-reviews">
+                    <h3 class="title">Profil Singkat</h3>
+                    <p class="description">
+                        Bapenda adalah singkatan dari Badan Pendapatan Daerah. Bapenda merupakan lembaga atau badan pemerintah yang bertanggung jawab dalam pengelolaan, penagihan, dan pengawasan berbagai sumber pendapatan daerah, seperti pajak daerah, retribusi, dan sumber-sumber lain yang menjadi hak daerah.
+                    </p>
+                    <ul class="features">
+                        <li><strong>Melakukan pengelolaan dan peningkatan penerimaan pendapatan daerah</strong></li>
+                        <li><strong>Menyusun kebijakan fiskal dan pengelolaan keuangan daerah.</strong></li>
+                        <li><strong>Melakukan penagihan dan pengawasan terhadap pajak dan retribusi.</strong></li>
+                        <li><strong>Memberikan pelayanan kepada wajib pajak atau wajib retribusi.</strong></li>
+                    </ul>
+                </div>
+                
+            </div>
+
+            <div class="content-right">
+                <h3>Berita</h3>
+                <!-- Embed YouTube Video -->
+                <div class="video-container">
+                    <iframe 
+                        width="70%" 
+                        height="400px" 
+                        src="https://www.youtube.com/embed/f-5YS2iA6wg?si=omgKUrIeN11bT7ix"
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <button id="shareLinkBtn">Share & Links</button>
+
+            
+                <div class="navigate-section">
+                    <h3>Informasi dan Layanan Kami</h3>
+                    <ul>
+                        <li><i class="fas fa-car"></i> SAMSAT MPP</li>
+                        <li><i class="fas fa-truck"></i> SAMSAT KELILING</li>
+                        <li><i class="fas fa-signal"></i> SIGNAL</li>
+                        <li><i class="fas fa-mobile-alt"></i> E-SAMSAT</li>
+                        <li><i class="fas fa-truck-moving"></i> SAMSAT ANTAR JEMPUT</li>
+                        <li><i class="fas fa-moon"></i> SAMALAM (SAMSAT MALAM)</li>
+                        <li><i class="fas fa-car-side"></i> SAMSAT DRIVE THRU</li>
+                    </ul>
+                </div>
+                
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="social-media">
+                <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+                    <img src="fb.png" alt="Facebook" class="social-icon"/>
+                </a>
+                <a href="https://www.whatsapp.com" target="_blank" aria-label="Whatsapp">
+                    <img src="wa.png" alt="Whatsapp" class="social-icon"/>
+                </a>
+                <a href="https://www.instagram.com/uppdbjm2.official?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" aria-label="Instagram">
+                    <img src="ig.png" alt="Instagram" class="social-icon"/>
+                </a>
+                <a href="https://www.youtube.com/@uppdbjm2" target="_blank" aria-label="YouTube">
+                    <img src="yt.png" alt="YouTube" class="social-icon"/>
+                </a>
+            </div>
+            <p>Copyright Syarif Hidayatullah 2024</p>
+        </footer>
+             
+    </div>
+</body>
+<script>
+    const slides = document.querySelector('.slides');
+    const images = document.querySelectorAll('.slides img');
+    const totalImages = images.length;
+
+    let index = 0;
+
+    document.getElementById('prev').addEventListener('click', () => {
+        index = (index > 0) ? index - 1 : totalImages - 1;
+        slides.style.transform = `translateX(-${index * 100}%)`;
+    });
+
+    document.getElementById('next').addEventListener('click', () => {
+        index = (index < totalImages - 1) ? index + 1 : 0;
+        slides.style.transform = `translateX(-${index * 100}%)`;
+    });
+
+    document.getElementById('shareLinkBtn').addEventListener('click', function() {
+        const videoLink = 'https://youtu.be/f-5YS2iA6wg?si=omgKUrIeN11bT7ix';
+        // Membuka link langsung di tab baru
+        window.open(videoLink, '_blank');
+    });
+
+
+</script>
+
+
+</html>
